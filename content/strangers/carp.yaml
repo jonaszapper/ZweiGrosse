@@ -1,0 +1,7 @@
+id: carp
+kind: carpenter
+trait: spender
+minProgress: 0.33
+accessory: hivis
+zone: bar
+look: { skin: "#E5AE85", hair: "#6B4A30", hairStyle: spiky, outfit: "#3A3A3A" }

@@ -1,0 +1,7 @@
+# Mechanics for this trait. Name and description are in content/text/da/traits.yaml.
+id: spender
+skills: { charm: 1, care: 0, heat: 0, wild: 1 }
+rate: 0.9
+tolerance: 1.2
+same: amplify
+bias: { beer: 2.5, dance: 1.5, wingman: 1 }

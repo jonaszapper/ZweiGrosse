@@ -1,0 +1,20 @@
+# Numbers for balancing. Run `npm run sim` before and after changing these.
+nightLength: 600        # seconds of game time from 21:00 to 03:00 (at 1x speed)
+escalateEvery: 14       # seconds before a want grows; after 3 steps nobody helped
+busySeconds: 4          # how long a helper is busy after helping
+flipAt: 4               # drunk level where the "after a few" trait takes over
+wastedAt: 8             # drunk level for "i hegnet"
+drinkRate: 0.055        # background drinking every 10 seconds
+zoneDrink: { bar: 1.3, table: 1, floor: 0.7, door: 0.6, out: 1.1 }
+director:
+  targetOpen: { warm: 1, peak: 3, comedown: 2 }    # wants open at once, for a crew of five
+  chance: { warm: 0.2, peak: 0.4, comedown: 0.3 }   # chance per second to add a want
+  gap: { warm: 16, peak: 11, comedown: 14 }          # minimum seconds between new wants
+encounters:
+  perNight: 2           # troublemakers in town each night
+  extraChance: 0.35     # chance of one more
+anders:
+  limit: 8.5            # drunk level where Anders starts turning people away
+  minLimit: 6.5         # he gets stricter after trouble, down to this
+  turnAwayChance: 0.6
+fightUnseenChance: 0.3  # chance a fight happens without Anders noticing

@@ -1,0 +1,113 @@
+# Log lines, pop-up words and reasons people went home.
+event:
+  start: "Nat {n}. Warm hos {host} er slut. Crewet går forbi Anders og ind på Zwei Grosse Bier Bar."
+  mumsOffDuty: "{names} har fri fra mor-jobbet i aften."
+  crush: "{name} kigger lidt for meget på {crush}."
+  flip: "{name} har fået et par stykker. {from} → {to}."
+  gone: "{name} {reason}."
+  lightweightsLeave: "{name} går med {other}. Drukbrødre."
+  want: "{name} {text}."
+  hangout: "{h} hænger ud med {t}."
+  volunteer: "{h} ventede ikke på at blive spurgt."
+  back: "{name} er tilbage."
+  cryTogether: "{a} og {b} går ud og græder sammen på toilettet."
+  carpenterRoundWar: "{name} kan ikke lade den ligge og giver en omgang tilbage. Prestigekamp."
+  creepLeaves: "Klamme Kaj lusker hjem."
+  creepThrownOut: "Anders smider Klamme Kaj ud. Endelig."
+  racistsLeave: "Bonderøvene brokker sig og går."
+  racistsThrownOut: "Anders smider bonderøvene ud."
+  racistsThrownOutToo: "Anders smider også bonderøvene ud."
+  gangVanishes: "Bandefyren forsvinder, før politiet kommer."
+  policeTakeHooligan: "Politiet tager hooliganen med."
+  tommyLeaves: "Tømrer-Tommy tager videre alene."
+  hotheadJoins: "En hidsigprop mere blander sig. Anders smider {names} ud."
+  strangerLeaves: "{s} går."
+  roundWar: "Omgangskrig! {names} bliver ved med at give omgange for at overgå hinanden."
+  remixEarly: "Simon bliver så rørt, at han rækker ud efter remixet før tid."
+  remixTease: "Simon teaser remixet. Få alle ud på dansegulvet!"
+  remixAll: "Remixet dropper, og hele crewet er på gulvet. Det her er øjeblikket."
+  remixSome: "Remixet dropper. {names} er på gulvet."
+  remixNone: "Remixet dropper. Ingen fra crewet er på gulvet. Kniv."
+  lightsOn: "03:00. Simon tænder lyset. Tid til at snige sig hjem."
+
+place:
+  go:
+    floor: "{h} går ud på dansegulvet."
+    table: "{h} går hen til bordet."
+  simon:
+    free: ["{h} får en gratis fadøl af Simon.", "Simon giver {h} en på huset."]
+    paid: "{h} køber en øl. Fuld pris."
+  anders:
+    report: "{h} siger det til Anders. Anders smider {s} ud."
+    scared: "{h} beder Anders om at gøre noget ved bandefyren. Anders kigger væk."
+    watching: "{h} siger det til Anders. Han siger, han holder øje."
+    chat: "{h} snakker med Anders. Han smiler næsten."
+    ignored: "{h} prøver at snakke med Anders. Han er ikke interesseret."
+  bush:
+    empty: "Busken er tom. Nogen har fundet flasken."
+    alone: "{h} sniger sig ud til busken alene."
+
+float:
+  nailed: "Sådan!"
+  fine: "Fint"
+  backfire: "Gik galt"
+  chaos: "Kaos!"
+  gone: "Væk"
+  thrownOut: "Smidt ud"
+  hangout: "Hænger ud"
+  freeBeer: "Gratis øl"
+  fullPrice: "Fuld pris"
+  andersFixes: "Anders ordner det"
+  watching: "Holder øje"
+  andersLikes: "Anders kan lide dig"
+  ignored: "Ignoreret"
+  bushRun: "Busketur"
+  overlooked: "Overset"
+  cryTogether: "Græder sammen"
+  theMoment: "Øjeblikket"
+
+# How someone left the night early. Shown as "<name> <reason>."
+reason:
+  blackout: ["faldt i søvn på toilettet og blev sendt hjem", "blev sat i en taxa af Simon", "blev hentet af sin far"]
+  leftWith: "gik med {name}"
+  beerOnOldMan: "blev smidt ud for at hælde øl på en gammel mand"
+  thrownOut: "blev smidt ud af Anders"
+  thrownOutRacists: "blev smidt ud for at stå op mod bonderøvene"
+  tookHome: "tog {name} sikkert med hjem"
+  takenHome: "blev fulgt hjem af {name}"
+  hospital: "fik tæsk af bandefyren og endte på skadestuen"
+  arrested: "blev anholdt sammen med hooliganen"
+  turnedAway: "blev afvist af Anders på vej tilbage fra busken"
+  unwell: "tog hjem meget dårlig. Forældrene blev ringet op"
+  afterpartyStrangers: "endte til efterfest hos nogle fremmede"
+  afterpartyGarage: "endte til efterfest i en fremmeds garage"
+  caughtWithBottle: "blev taget af Anders med flasken"
+  sickAtBar: "kastede op ved baren og blev smidt ud af Simon"
+  pushedOldMan: "blev smidt ud efter at have skubbet til en gammel mand"
+  creepedOut: "tog hjem, utryg og sur"
+  wrongOneOut: "blev smidt ud af Anders, mens bonderøvene fik lov at blive"
+  afterpartyTommy: "tog med Tømrer-Tommy til efterfest"
+  stranded: "strandede ude på landet uden telefon kl 4"
+  afterpartyAnyway: "tog med Tømrer-Tommy til efterfest alligevel"
+  afterpartyBoth: "tog begge med Tømrer-Tommy til efterfest"
+  vanished: "forsvandt. Ingen ved hvor de gik hen"
+  sickSentHome: "kastede op i baren og blev sendt hjem"
+  kajWouldntStop: "tog hjem, fordi Klamme Kaj ikke gav op"
+  tears: "tog hjem tidligt, grædende"
+
+# How the ones who lasted until 03:00 got home.
+home:
+  sober: "kom hjem og sneg sig forbi forældrene"
+  tipsy: ["delte en durum og gik hjem", "tog natbussen hjem", "sneg sig ind uden at vække nogen"]
+  wasted: ["vækkede mor på trappen", "faldt i søvn i natbussen og vågnede ved endestationen"]
+  sofa: "sov på sofaen hos {name}"
+
+stage:
+  sober: "ædru"
+  tipsy: "stiv"
+  wasted: "i hegnet"
+
+word:
+  and: "og"
+  aStranger: "en fremmed"
+  theStranger: "Den fremmede"

@@ -1,0 +1,6 @@
+id: gang
+kind: gang
+trait: hothead
+minProgress: 0.4
+accessory: chain
+look: { skin: "#B98158", hair: "#161616", hairStyle: spiky, outfit: "#141418" }

@@ -1,0 +1,7 @@
+id: farm
+kind: racists
+trait: hothead
+minProgress: 0.28
+accessory: cap
+zone: table
+look: { skin: "#F7C9A8", hair: "#C9A35A", hairStyle: bowl, outfit: "#556B3A" }

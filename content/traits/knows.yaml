@@ -1,0 +1,8 @@
+# Mechanics for this trait. Name and description are in content/text/da/traits.yaml.
+id: knows
+skills: { charm: 1, care: 0, heat: 0, wild: 1 }
+npcCharm: 2  # charm when talking to Simon, Anders and strangers
+rate: 1
+tolerance: 1
+same: dilute
+bias: { lost: 3, beer: 2, wingman: 1 }

@@ -1,0 +1,129 @@
+# What happens when a friend helps. {h} = helper, {t} = the friend who wanted something, {s} = the stranger.
+# {rest} is filled with a follow-up sentence (for example the fight that broke out).
+# Add more lines to any list and the game picks one at random.
+out:
+  beer:
+    round: "en omgang til hele bordet."
+    declined: "kortet bliver afvist. Foran alle."
+    spilled: "hele omgangen ryger ud over bordet."
+    nailed: ["Simon skubber to gratis fadøl over disken.", "Simon blinker og giver to på huset."]
+    fine: "én gratis øl. Det tæller."
+    backfire: ["Simon er ikke i humør. Fuld pris.", "Simon griner og tager fuld pris."]
+    chaos: "vælter en fuld bakke. Det glemmer Simon ikke."
+  wingman:
+    steal: "{h} ender med {s} i stedet. Ups."
+    rival: "det går godt, indtil {r} snupper den."
+    carpenter: "Tømrer-Tommy giver shots hele vejen. Og viser billeder af sin terrasse."
+    smokingArea: "{t} og {s} klikker. Ud i rygeområdet."
+    nailed: ["{t} og {s} klikker.", "{t}s rizz virker. {h} trækker sig stille tilbage."]
+    fine: "en okay snak med {s}."
+    backfire: ["wingman'en sagde noget mærkeligt om {t}s mor.", "wingman'en snakkede kun om sig selv."]
+  hug:
+    nailed: ["sommerens bedste kram.", "et langt kram. Det hjalp."]
+    fine: "et godt kram."
+    backfire: "et akavet klap på skulderen."
+    chaos: "gjorde det til at handle om sig selv. På en eller anden måde."
+  backup:
+    push:
+      nailed: "vinder diskussionen. {s} går."
+      nailedFight: "vinder diskussionen. Så bliver det fysisk: {rest}"
+      fine: "diskussionen er slut. {s} går."
+      backfire: "gør det værre, men Anders så det ikke."
+      backfireFight: "gør det værre: {rest}"
+    calm:
+      nailed: "glatter det ud. {t} og {s} giver hånd."
+      fine: "får det til at falde til ro. Nogenlunde."
+      backfire: "{s} vender sig mod fredsmægleren."
+      chaos: "prøver at få ro på. Det bliver en slåskamp alligevel: {rest}"
+  dance:
+    alone: "straffer floor alene. Ingen fortrydelser."
+    nailed: ["ejer dansegulvet sammen.", "straffer floor sammen. Folk kigger."]
+    fine: "dansede. Det var fint."
+    backfire: "'ikke endnu.' Måske senere."
+    chaos: "{t} falder på dansegulvet. Alle så det."
+  dare:
+    calm:
+      nailed: "snakket fra det. Fornuftigt."
+      fine: "snakket fra det. Lidt sur over det."
+      backfire: "gjorde det alligevel: {rest}"
+      chaos: "de gjorde det begge to: {rest}"
+    push:
+      together: "gjorde det sammen: {rest}"
+    did: "gjorde det. Legendarisk."
+    didHeavy: "gjorde det. Er nu meget, meget snakkesalig."
+    regret: "gjorde det. Fortryder allerede."
+    badly: "gjorde det. Det gik skidt."
+  lost:
+    nailed: "fundet foran kebabhuset. Hentet tilbage med vand."
+    fine: "fundet og hentet tilbage."
+    backfire: "fundet, og så væk igen."
+    chaosOne: "mistede {t} for godt. Efterfest et sted."
+    chaosBoth: "begge forsvandt. Efterfest i en fremmeds garage."
+  bush:
+    knowsDad: "gratis vodka fra busken. Anders vinker dem ind igen. Han kender deres far."
+    ok: "gratis vodka fra busken. Forbi Anders igen."
+    turnedAway: "gratis vodka fra busken. Anders havde andre planer."
+    stolen: "nogen har fundet busken. Flasken er væk."
+    caught: "Anders tager dem med flasken."
+  sick:
+    nailed: "holder håret, finder vand. Ægte venskab."
+    fine: "et glas vand og en toiletpause. Bedre."
+    backfire: "{t} kaster op på {h}s sko."
+    chaos: "for sent. Det skete ved baren."
+  creep:
+    push:
+      nailed: "konfronterer ham højlydt. Anders hører det og smider Kaj ud."
+      fine: "siger fra. Kaj trækker sig tilbage til baren. For nu."
+      backfire: "Kaj griner bare og siger 'slap nu af, skat'."
+      chaos: "skubber til Kaj. Anders ser kun den del. {h} bliver smidt ud."
+    calm:
+      nailed: "lader som om de er kærester og tager dem med ud på gulvet. Væk fra Kaj."
+      fine: "henter dem tilbage til bordet."
+      backfire: "Kaj følger efter dem."
+      chaos: "det hele blev for meget. {t} tager hjem."
+  stand:
+    push:
+      nailed: "står op mod hele flokken. Folk i baren klapper. Bonderøvene går."
+      fine: "siger fra. Bonderøvene mumler og trækker sig."
+      backfire: "de griner bare. Det er værre."
+      backfireFight: "skubberi: {rest}"
+    calm:
+      nailed: "går til Anders. Anders smider bonderøvene ud."
+      backfire: "Anders trækker på skuldrene. 'De har ikke gjort noget.'"
+      chaos: "Anders misforstår det hele og smider {h} ud i stedet."
+  afterparty:
+    push:
+      nailed: "tager med til efterfest. Der er faktisk en jacuzzi."
+      fine: "tager med til efterfest. Det er mest fodbold og Tuborg."
+      backfire: "bilen er fuld. Tommy kører uden dem. Heldigvis."
+      chaos: "{t} tager med og ender strandet ude på landet uden telefon."
+    calm:
+      nailed: "snakker dem fra det. De bliver. Godt valg."
+      backfire: "tager med alligevel."
+      chaos: "skulle snakke dem fra det. Nu sidder de begge i Tommys firmabil."
+
+fight:
+  unseen: "tumult med {s}. Anders så det ikke. Heldigt."
+  gang: "rører bandefyren. Dårlig idé. {names} ender på skadestuen."
+  police: "slåskamp med hooliganen. Politiet kommer. {names} bliver anholdt."
+  thrownOut: "slåskamp med {s}. Anders smider {names} ud."
+
+# When nobody helps in time.
+ignored:
+  beer: "Ingen hjalp {name}. De købte selv."
+  wingman:
+    ok: "{name} gik over til {s} alene. Det gik fint."
+    bad: "{name} gik over til {s} alene. Det gik ikke fint."
+  hug: "Ingen opdagede, at {name} var ked af det."
+  backup:
+    fight: "Ingen bakkede {name} op: {rest}"
+    lost: "Ingen bakkede {name} op. {s} vandt diskussionen."
+  dance: "{name} opgav at danse."
+  dare: "{name} tog udfordringen alene: {rest}"
+  bush: "{name} tømte busken alene."
+  sick: "{name} klarede det selv på toilettet. Alene."
+  creep: "Ingen hjalp {name} væk fra Klamme Kaj."
+  stand: "Ingen sagde noget til bonderøvene. {name} har det skidt med det."
+  afterparty:
+    went: "{name} tager med Tømrer-Tommy. Ingen stoppede dem."
+    declined: "{name} siger nej tak til Tømrer-Tommy. Selv."

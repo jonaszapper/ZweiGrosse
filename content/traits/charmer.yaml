@@ -1,0 +1,7 @@
+# Mechanics for this trait. Name and description are in content/text/da/traits.yaml.
+id: charmer
+skills: { charm: 2, care: 0, heat: 0, wild: 1 }
+rate: 1
+tolerance: 1
+same: compete
+bias: { wingman: 4, dance: 2, beer: 1 }

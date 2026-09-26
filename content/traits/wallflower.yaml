@@ -1,0 +1,7 @@
+# Mechanics for this trait. Name and description are in content/text/da/traits.yaml.
+id: wallflower
+skills: { charm: -1, care: 1, heat: -1, wild: -1 }
+rate: 0.8
+tolerance: 0.9
+same: bond
+bias: { dance: 4, hug: 1 }
