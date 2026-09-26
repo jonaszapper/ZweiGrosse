@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { loadNodeContent } from '../tools/node-content';
-import { Sim, type CrewMember } from '../src/sim/engine';
+import { Sim, wentBadly, type CrewMember } from '../src/sim/engine';
+import { Clock, replayNight, TICK } from '../src/sim/replay';
 import { botStep } from '../src/sim/bot';
 import { makeRng } from '../src/sim/rng';
 
@@ -32,10 +33,31 @@ describe('simulation', () => {
     expect(a).toBe(b);
   });
 
+  it('replays a recorded night exactly from seed, crew and taps', () => {
+    for (const seed of [3, 42, 99]) {
+      const a = playNight(seed);
+      const b = replayNight(new Sim(c, seed, { strictText: true }), JSON.parse(JSON.stringify(a.replay(0.25))));
+      expect(b.s.log.map(l => l.text)).toEqual(a.s.log.map(l => l.text));
+      expect(b.s.friends.map(f => f.gone)).toEqual(a.s.friends.map(f => f.gone));
+    }
+  });
+
+  it('gives the same night at any frame rate and speed', () => {
+    // Play in the fixed-tick clock with uneven frames and a speed change, the way the browser does.
+    const r = makeRng(5);
+    const sim = new Sim(c, 77);
+    sim.newNight(Array.from({ length: 5 }, (_, i) => ({ name: 'P' + i, traits: [traits[i], traits[i + 5]], look: sim.randomLook() })));
+    const clock = new Clock(sim);
+    let g = 0;
+    while (!sim.s.ended && g++ < 1e5) { clock.advance((0.004 + r() * 0.03) * (g > 2000 ? 4 : 1)); botStep(sim, 'good', r); }
+    const again = replayNight(new Sim(c, 77), sim.replay(TICK));
+    expect(again.s.log.map(l => l.text)).toEqual(sim.s.log.map(l => l.text));
+    expect(again.s.steps).toBe(sim.s.steps);
+  });
+
   it('stays roughly balanced for an attentive player', () => {
     let gone = 0;
-    const safe = ['reason.tookHome', 'reason.takenHome', 'reason.afterpartyTommy', 'reason.afterpartyAnyway', 'reason.afterpartyBoth'];
-    for (let seed = 1; seed <= 200; seed++) gone += playNight(seed).s.friends.filter(f => f.gone && !safe.includes(f.goneKey ?? '')).length;
+    for (let seed = 1; seed <= 200; seed++) gone += playNight(seed).s.friends.filter(wentBadly).length;
     const perNight = gone / 200;
     // If this fails after a tuning change, run `npm run sim` and decide if the new number is intended.
     expect(perNight).toBeGreaterThan(0.5);

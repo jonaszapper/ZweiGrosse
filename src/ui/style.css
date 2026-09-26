@@ -67,7 +67,7 @@ img { image-rendering: pixelated; }
 .log time { font-weight: 800; color: var(--ink-soft); margin-right: 5px; font-variant-numeric: tabular-nums; }
 .log .m { display: block; color: var(--ink-soft); font-size: 12px; }
 .foot { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
-.seed { font-size: 11px; color: var(--ink-soft); }
+.seed { font: inherit; font-size: 11px; color: var(--ink-soft); background: none; border: 0; padding: 0 6px; min-height: 40px; text-decoration: underline dotted; cursor: pointer; }
 
 /* morning after */
 .phone { background: var(--panel); border: 2px solid #3B2616; border-radius: 22px; overflow: hidden; box-shadow: 0 3px 0 #3B2616; }

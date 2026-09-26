@@ -1,5 +1,6 @@
 import type { Place, Sim } from '../sim/engine';
 import { Text } from '../sim/text';
+import { Clock, type Replay } from '../sim/replay';
 
 /**
  * The player's side of the night: what is selected, what the hint says, speed and pause.
@@ -13,16 +14,30 @@ export class Controller {
   private hintMsg = '';
   private hintUntil = 0;
   readonly ui: Text;
+  private readonly clock: Clock;
 
-  constructor(public sim: Sim) {
+  /** With a replay, the recorded taps play back and the player's taps are ignored until they run out. */
+  constructor(public sim: Sim, replay?: Replay) {
     this.ui = new Text(sim.c.text[sim.lang], Math.random);
+    this.clock = new Clock(sim, undefined, replay?.inputs);
   }
 
-  private say(key: string, vars: Record<string, string> = {}) { this.hintMsg = this.ui.t(key, vars); this.hintUntil = performance.now() + 2600; }
+  /** True while a recorded night is playing back. */
+  get replaying() { return this.clock.replaying; }
+
+  /** Called every frame with real seconds. The sim moves in fixed steps, so speed and frame rate never change the night. */
+  tick(realSeconds: number) { if (!this.paused) this.clock.advance(realSeconds * this.speed); }
+
+  /** Skip to 03:00. */
+  endNight() { if (!this.replaying) this.sim.endNow(); }
+
+  /** Shows a message in the hint box for a moment. */
+  say(key: string, vars: Record<string, string> = {}) { this.hintMsg = this.ui.t(key, vars); this.hintUntil = performance.now() + 2600; }
 
   tapPerson(id: string) {
     const sim = this.sim, s = sim.s;
     if (s.ended) return;
+    if (this.replaying) return this.say('ui.hint.replaying');
     const f = sim.friend(id);
     if (!this.selected) {
       if (!f) {
@@ -46,6 +61,7 @@ export class Controller {
   tapPlace(place: Place | 'none') {
     const s = this.sim.s;
     if (s.ended) return;
+    if (this.replaying) return this.say('ui.hint.replaying');
     if (!this.selected) {
       if (place === 'bush') this.say(s.bushEmpty ? 'ui.hint.bushEmpty' : 'ui.hint.bush');
       if (place === 'anders') this.say('ui.hint.anders');

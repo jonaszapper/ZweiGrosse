@@ -50,7 +50,7 @@ Two or three per night, picked at the start: Klamme Kaj (an old creep), the hool
 - Warm, cosy UI panels around a dark bar.
 
 ## Balance targets
-Measured with `npm run sim` using an attentive autopilot, crew of five:
+Measured with `npm run sim` using an attentive autopilot, crew of five. "Sent home badly" means leaving for any reason except going home with someone or the jacuzzi afterparty (`FINE_EXITS` in `src/sim/engine.ts`). Two lightweights leaving together and the garage afterparty count as bad. Open question: should they?
 - 1.3 to 2 friends sent home badly per night.
 - 30 to 45% of nights with nobody sent home badly.
 - Hotheads are the riskiest to bring, mums the safest.
@@ -88,6 +88,9 @@ Highest value for effort first. Benefit and cost scored 1 to 5.
 14. **Store preparation** (2, 2). Age rating, parody brand names, clearly original art.
 15. **Character customizer** (3, 4). Expensive, can wait.
 16. **Language pass with native ears** (parked).
+
+## Bug reports and replays
+A night is decided by its seed, the crew, what carried over from the night before, and the player's taps. The game records the taps and steps the sim in fixed ticks, so the replay link (tap the seed in the footer, or on the morning screen) plays a night again exactly, at any speed. The seed alone only fixes how a night starts.
 
 ## Known loose ends
 - Want bubbles use emoji. Fine on phones, blank in some headless browsers used for testing.

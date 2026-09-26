@@ -121,7 +121,7 @@ export class BarScene extends Phaser.Scene {
   update(_time: number, deltaMs: number) {
     const dt = Math.min(0.1, deltaMs / 1000);
     const sim = this.sim, s = sim.s;
-    if (!this.ctl.paused) sim.step(dt * this.ctl.speed);
+    this.ctl.tick(deltaMs / 1000);
 
     // layout: count people per zone, NPCs take the first slot of bar and door
     const counters: Record<Zone, number> = { bar: 1, door: 1, floor: 0, table: 0, out: 0, gone: 0 };

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import * as Phaser from 'phaser';
 import type { Controller } from '../game/controller';
 import { BarScene, VIEW_H, VIEW_W } from '../scenes/BarScene';
+import { copyReplayLink } from '../game/replayLink';
 
 /** The night: a Phaser canvas for the bar, with the clock and speed on top and the hint and log below. */
 export function Night({ ctl, onEnd }: { ctl: Controller; onEnd: () => void }) {
@@ -48,8 +49,8 @@ export function Night({ ctl, onEnd }: { ctl: Controller; onEnd: () => void }) {
       </ul>
       <footer class="foot">
         <button class="btn small blue" aria-pressed={ctl.showNumbers} onClick={() => { ctl.showNumbers = !ctl.showNumbers; tick(n => n + 1); }}>{ui.t(ctl.showNumbers ? 'ui.hideNumbers' : 'ui.showNumbers')}</button>
-        <span class="seed">{ui.t('ui.seed', { seed: String(s.seed) })}</span>
-        <button class="btn small" onClick={() => sim.endNow()}>{ui.t('ui.endNight')}</button>
+        <button class="seed" title={ui.t('ui.copyReplay')} onClick={async () => { if (await copyReplayLink(sim.replay(), ui.t('ui.replayPrompt'))) ctl.say('ui.replayCopied'); }}>{ui.t('ui.seed', { seed: String(s.seed) })}</button>
+        <button class="btn small" disabled={ctl.replaying} onClick={() => ctl.endNight()}>{ui.t('ui.endNight')}</button>
       </footer>
     </section>
   );

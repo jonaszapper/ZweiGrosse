@@ -51,6 +51,7 @@ ui:
     busy: "{name} er optaget et øjeblik."
     notHere: "{name} er her ikke."
     gone: "{name} {reason}."
+    replaying: "Det her er en optaget nat, der bliver spillet igen. Du kan ikke trykke, før den er færdig."
     bush: "Busken. Her ligger vodkaen fra warm. Send en ven ud efter gratis drinks, men de skal forbi Anders igen."
     bushEmpty: "Busken er tom. Nogen har fundet flasken."
     anders: "Anders. Lav og meget bred. Afviser alle, der er for fulde. Send en charmerende ven hen for at snakke, eller for at sladre om ballademagere."
@@ -59,6 +60,9 @@ ui:
   hideNumbers: "Skjul tallene"
   endNight: "Slut natten"
   seed: "seed {seed}"
+  copyReplay: "Kopiér replay-link"
+  replayCopied: "Link kopieret. Send det med, når du melder en fejl."
+  replayPrompt: "Kopiér linket. Det spiller natten præcis som den gik:"
   morning:
     chatName: "🍻 crewet"
     title: "Dagen derpå, nat {n}"

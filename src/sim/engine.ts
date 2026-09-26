@@ -2,6 +2,7 @@ import type { Content } from '../content/load';
 import type { EncounterKind, Look, Skill, WantId, Zone } from '../content/schema';
 import { chance, clamp, makeRng, pick, type Rng } from './rng';
 import { Text, type Vars } from './text';
+import { TICK, type Input, type Replay } from './replay';
 
 // ---------- types ----------
 export type Tier = 'nailed' | 'fine' | 'backfire' | 'chaos';
@@ -37,8 +38,15 @@ export interface State {
   remix: { at: number; state: 'waiting' | 'teasing' | 'playing' | 'done'; until: number };
   stories: Story[]; fx: Fx[]; log: LogEntry[]; nextId: number; nextStranger: number; lastRoundWar: number;
   lastSpawn: number; ended: boolean; pending: { at: number; id: string; type: WantId; key: string; vars: Vars }[];
+  /** Steps taken so far, and the player's actions by step. Together with the seed and crew they replay the night. */
+  steps: number; inputs: Input[]; crew: CrewMember[]; carry?: Carry;
 }
 export interface Carry { night: number; bonds: Record<string, number> }
+
+/** Ways of leaving that are not a bad ending: going home with someone, or the jacuzzi afterparty. */
+export const FINE_EXITS: readonly string[] = ['reason.tookHome', 'reason.takenHome', 'reason.afterpartyTommy', 'reason.afterpartyAnyway', 'reason.afterpartyBoth'];
+/** Sent home badly: gone before 03:00 for any reason not in FINE_EXITS. The balance numbers count these. */
+export const wentBadly = (f: Friend) => !!f.gone && !FINE_EXITS.includes(f.goneKey ?? '');
 
 /**
  * One night at Zwei Grosse Bier Bar.
@@ -46,6 +54,7 @@ export interface Carry { night: number; bonds: Record<string, number> }
  */
 export class Sim {
   readonly rng: Rng;
+  private readonly lookRng: Rng;
   readonly tx: Text;
   readonly c: Content;
   readonly lang: string;
@@ -55,6 +64,7 @@ export class Sim {
     this.c = content;
     this.lang = opts.lang ?? 'da';
     this.rng = makeRng(seed);
+    this.lookRng = makeRng(seed ^ 0x5bd1e995);
     this.tx = new Text(content.text[this.lang], this.rng, !!opts.strictText);
     this.seed = seed;
   }
@@ -102,6 +112,7 @@ export class Sim {
       tonight: shuffled.slice(0, T.encounters.perNight + (this.chance(T.encounters.extraChance) ? 1 : 0)),
       remix: { at: T.nightLength * (0.45 + this.rng() * 0.18), state: 'waiting', until: 0 },
       stories: [], fx: [], log: [], nextId: 1, nextStranger: 30, lastRoundWar: 0, lastSpawn: -99, ended: false, pending: [],
+      steps: 0, inputs: [], crew: structuredClone(crew), carry: carry && structuredClone(carry),
     };
     const s = this.s;
     s.friends = crew.map((m, i) => ({
@@ -133,7 +144,7 @@ export class Sim {
     const d = this.pick(pool);
     const x: Stranger = {
       id: 's' + s.nextId++, def: d.id, kind: d.kind ?? null, name: this.t(`stranger.${d.id}.name`), tag: this.t(`stranger.${d.id}.tag`),
-      trait: d.trait, look: d.look ? { ...d.look, accessory: d.accessory } : { ...this.randomLook(true), accessory: d.accessory },
+      trait: d.trait, look: d.look ? { ...d.look, accessory: d.accessory } : { ...this.randomLook(true, this.rng), accessory: d.accessory },
       stranger: true, zone: d.zone ?? this.pick(['floor', 'floor', 'bar', 'table'] as Zone[]), left: false,
     };
     s.strangers.push(x);
@@ -146,14 +157,18 @@ export class Sim {
     return x;
   }
 
-  randomLook(muted = false): Look {
+  /**
+   * A random look. Crew looks are rolled before the night with their own random numbers, so rolling
+   * looks in the crew builder never changes the night itself. Strangers use the night's numbers.
+   */
+  randomLook(muted = false, rng: Rng = this.lookRng): Look {
     const P = this.c.palette;
     const styles = Object.keys(this.c.parts.hair ?? { bowl: 0 });
     return {
-      skin: this.pick(P.skins),
-      hair: muted ? this.pick(['#6b5a4e', '#8a7f78', '#4b4452', '#9c8466']) : this.pick(P.hairs),
-      hairStyle: this.pick(styles),
-      outfit: muted ? this.pick(['#8b8fa3', '#9a8f86', '#7d8f88']) : this.pick(P.outfits),
+      skin: pick(rng, P.skins),
+      hair: muted ? pick(rng, ['#6b5a4e', '#8a7f78', '#4b4452', '#9c8466']) : pick(rng, P.hairs),
+      hairStyle: pick(rng, styles),
+      outfit: muted ? pick(rng, ['#8b8fa3', '#9a8f86', '#7d8f88']) : pick(rng, P.outfits),
     };
   }
 
@@ -302,6 +317,7 @@ export class Sim {
 
   // ---------- player actions ----------
   sendTo(hid: string, tid: string) {
+    this.s.inputs.push([this.s.steps, hid, tid]);
     const h = this.friend(hid), t = this.person(tid);
     if (!h || !t || !this.avail(h)) return;
     if (t.stranger) { this.log(this.t(t.kind ? `stranger.greet.${t.kind}` : 'stranger.greet.default', { h: h.name, s: t.name })); return; }
@@ -318,6 +334,7 @@ export class Sim {
   }
 
   sendPlace(hid: string, place: Place) {
+    this.s.inputs.push([this.s.steps, '@', hid, place]);
     const h = this.friend(hid); if (!h || !this.avail(h)) return;
     const s = this.s, B = this.T.busySeconds;
     if (place === 'floor' || place === 'table') {
@@ -767,6 +784,7 @@ export class Sim {
     const s = this.s;
     if (!s || s.ended) return;
     const prevT = s.t;
+    s.steps++;
     s.t = Math.min(s.len, s.t + dt);
     const crossed = (sec: number) => Math.floor(prevT / sec) !== Math.floor(s.t / sec);
     const T = this.T;
@@ -883,9 +901,12 @@ export class Sim {
   }
 
   /** Skip to 03:00 now. */
-  endNow() { if (!this.s.ended) { this.s.t = this.s.len - 0.01; this.step(0.02); } }
+  endNow() { if (!this.s.ended) { this.s.inputs.push([this.s.steps, 'end']); this.s.t = this.s.len - 0.01; this.step(0.02); } }
 
   carry(): Carry { return { night: this.s.night, bonds: { ...this.s.bonds } }; }
+
+  /** Everything needed to play this night again exactly. `dt` is the step size the night was played with. */
+  replay(dt = TICK): Replay { const s = this.s; return { v: 1, seed: s.seed, dt, crew: s.crew, carry: s.carry, inputs: [...s.inputs] }; }
 
   // ---------- morning after ----------
   private voice(f: Friend, text: string) {
@@ -912,8 +933,7 @@ export class Sim {
     top.sort((a, b) => a.t - b.t);
     const msgs: Recap['msgs'] = [];
     const push = (from: string, text?: string, photo?: string, ids?: string[]) => msgs.push({ from, name: byId(from).name, text: text && this.voice(byId(from), text), photo, ids });
-    const safe = ['reason.tookHome', 'reason.takenHome', 'reason.afterpartyTommy', 'reason.afterpartyAnyway', 'reason.afterpartyBoth'];
-    const anyBad = s.friends.some(f => f.gone && !safe.includes(f.goneKey ?? ''));
+    const anyBad = s.friends.some(wentBadly);
     const carer = s.friends.find(f => ['mum', 'loyal', 'softie'].includes(f.traits[0])) ?? s.friends[0];
     push(carer.id, this.t(anyBad ? 'recap.openBad' : 'recap.openGood'));
     top.forEach(st => {

@@ -28,10 +28,10 @@ Read `docs/DESIGN.md` before proposing features or changing how the game feels: 
 ## Rules
 1. **The sim never touches the DOM or Phaser.** Everything in `src/sim` must run in Node. The scene reads sim state and calls `sendTo` / `sendPlace`; it never changes state directly.
 2. **No player-facing text in code.** Every string shown to players is a key in `content/text/da/*.yaml`, looked up with `t('key', vars)`. New keys go in the YAML in the same PR. Tests run the sim in strict mode, so a missing key fails CI.
-3. **All randomness in the sim goes through the seeded RNG** (`this.rng`, `this.pick`, `this.chance`). Never `Math.random()` in `src/sim`. A seed must replay a night exactly. The seed is shown in the night footer and `?seed=123` replays it.
+3. **All randomness in the sim goes through the seeded RNG** (`this.rng`, `this.pick`, `this.chance`). Never `Math.random()` in `src/sim`. The seed, the crew, the carry-over from last night and the player's taps decide a night exactly. The game steps the sim in fixed ticks (`src/sim/replay.ts`), so speed and frame rate never change what happens. Player actions reach the sim only through `sendTo`, `sendPlace` and `endNow`, which record themselves; don't add another way in without recording it. Tapping the seed in the night footer copies a `?replay=` link that plays the night again exactly.
 4. **Numbers live in `content/tuning.yaml`**, not in code, when a designer might want to tweak them.
 5. **Mobile first.** The scene is laid out in a 360×640 logical space. Test on a phone-sized viewport. Tap targets at least 40 logical pixels.
 6. Keep PRs small and focused on one thing. Say in the PR what you changed and how you checked it.
 
 ## Debugging
-During a night, `zg` in the browser console is the controller. `zg.sim.s` is the whole state, `zg.speed = 8` speeds up, `zg.sim.endNow()` skips to 03:00.
+During a night, `zg` in the browser console is the controller. `zg.sim.s` is the whole state, `zg.speed = 8` speeds up, `zg.endNight()` skips to 03:00, `zg.sim.replay()` is the recording of the night so far.
