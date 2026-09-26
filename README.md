@@ -34,8 +34,8 @@ The `CLAUDE.md` files are written for both people and Claude Code. If you use Cl
 
 ## Checks
 - `npm run ci` runs everything CI runs: typecheck, content check, tests, build.
-- `npm run sim -- --nights 500` plays 500 nights with an autopilot and prints balance numbers. CI posts the same table on every run.
-- Every night shows a seed at the bottom. Add `?seed=<number>` to the address to replay that exact night, which makes bug reports easy: "seed 4242, Mads got thrown out at 22:10 for no reason".
+- `npm run sim -- --nights 500` plays 500 nights with an autopilot and prints balance numbers. CI runs 300 nights and shows the table in the run summary.
+- Every night shows a seed at the bottom. Tap it to copy a replay link: it plays that exact night again, with the same crew and the same taps. Paste it in bug reports: "Mads got thrown out at 22:10 for no reason" plus the link. There is a replay link on the morning-after screen too. (`?seed=<number>` only fixes how a night starts. With a different crew or other taps it plays out differently.)
 
 ## Setting up
 1. **GitHub:** create an empty repo, then in this folder run `git init`, `git add .`, `git commit -m "Starter"`, add the remote and push. Protect `main` so changes go through pull requests and require the CI check to pass.

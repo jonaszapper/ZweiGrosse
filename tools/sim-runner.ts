@@ -2,7 +2,7 @@
 // Usage: npm run sim -- --nights 500 --seed 1 --policy good
 import { appendFileSync } from 'node:fs';
 import { loadNodeContent } from './node-content';
-import { Sim, type CrewMember } from '../src/sim/engine';
+import { Sim, wentBadly, type CrewMember } from '../src/sim/engine';
 import { botStep } from '../src/sim/bot';
 import { makeRng } from '../src/sim/rng';
 
@@ -13,7 +13,6 @@ export function runBatch(n: number, seed: number, pol: 'good' | 'idle') {
   const c = loadNodeContent();
   const traits = Object.keys(c.traits);
   const stats = { nights: 0, gone: 0, clean: 0, moment: 0, drunk: 0, people: 0, reasons: {} as Record<string, number>, byTrait: {} as Record<string, [number, number]>, missing: new Set<string>() };
-  const safe = ['reason.tookHome', 'reason.takenHome', 'reason.afterpartyTommy', 'reason.afterpartyAnyway', 'reason.afterpartyBoth'];
   for (let k = 0; k < n; k++) {
     const r = makeRng(seed * 7919 + k);
     const sim = new Sim(c, seed * 7919 + k);
@@ -21,7 +20,7 @@ export function runBatch(n: number, seed: number, pol: 'good' | 'idle') {
     sim.newNight(crew);
     let g = 0;
     while (!sim.s.ended && g++ < 5000) { sim.step(0.25); botStep(sim, pol, r); sim.drainFx(); }
-    const bad = sim.s.friends.filter(f => f.gone && !safe.includes(f.goneKey ?? ''));
+    const bad = sim.s.friends.filter(wentBadly);
     stats.nights++; stats.gone += bad.length; if (!bad.length) stats.clean++;
     if (sim.s.stories.some(st => st.weight === 10)) stats.moment++;
     sim.s.friends.forEach(f => {

@@ -1,6 +1,7 @@
 import type { Recap, Sim } from '../sim/engine';
 import type { Text } from '../sim/text';
 import { spriteUrl } from './sprites';
+import { copyReplayLink } from '../game/replayLink';
 
 /** The morning-after group chat: the night's best moments, told by the crew. */
 export function Morning({ ui, recap, sim, onAgain, onNewCrew }: { ui: Text; recap: Recap; sim: Sim; onAgain: () => void; onNewCrew: () => void }) {
@@ -35,6 +36,7 @@ export function Morning({ ui, recap, sim, onAgain, onNewCrew }: { ui: Text; reca
       <div class="actions">
         <button class="btn go" onClick={onAgain}>{ui.t('ui.morning.again')}</button>
         <button class="btn blue" onClick={onNewCrew}>{ui.t('ui.morning.newCrew')}</button>
+        <button class="seed" onClick={async () => { if (await copyReplayLink(sim.replay(), ui.t('ui.replayPrompt'))) alert(ui.t('ui.replayCopied')); }}>{ui.t('ui.seed', { seed: String(sim.s.seed) })} · {ui.t('ui.copyReplay')}</button>
       </div>
     </section>
   );
