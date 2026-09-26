@@ -33,6 +33,7 @@ Read `docs/DESIGN.md` before proposing features or changing how the game feels: 
 4. **Numbers live in `content/tuning.yaml`**, not in code, when a designer might want to tweak them.
 5. **Mobile first.** The scene is 360 logical pixels wide and 480 to 640 tall, whatever fills the phone (`viewHeight` in `BarScene.ts`); lay things out relative to the areas, never at fixed y positions. The night must fit the screen without scrolling: test at 360×640 and 390×844. Tap targets at least 40 logical pixels. Colours come from `src/game/palette.ts`.
 6. Keep PRs small and focused on one thing. Say in the PR what you changed and how you checked it.
+7. **Docs change with the code.** If a PR changes a design decision, a command, a folder or a content rule, update the matching doc in the same PR: `docs/DESIGN.md` for design decisions, this file and `README.md` for commands and folders, `content/CLAUDE.md` for content rules, and the `CLAUDE.md` in the folder you touched.
 
 ## Debugging
 During a night, `zg` in the browser console is the controller. `zg.sim.s` is the whole state, `zg.speed = 8` speeds up, `zg.endNight()` skips to 03:00, `zg.sim.replay()` is the recording of the night so far.
