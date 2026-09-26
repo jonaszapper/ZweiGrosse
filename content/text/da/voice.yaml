@@ -1,0 +1,13 @@
+# How each trait writes in the group chat. Applied to about two thirds of their messages.
+# transform: upper, lower, sentence (capital letter and full stop) or typo. suffix: one is picked at random.
+hothead: { suffix: ["", " wallah", " bro"] }
+party: { transform: upper, suffix: [" 🔥", " SHEEESH", "!!!", " 🍻"] }
+wallflower: { transform: lower }
+mum: { transform: sentence, suffix: [" 💛", "", " Husk at drikke vand."] }
+drama: { suffix: [" 💀", " 👀", " 😭"] }
+softie: { suffix: [" 🥺", " ❤️", " 🫶"] }
+lightweight: { transform: typo }
+charmer: { suffix: ["", " 😏"] }
+spender: { suffix: ["", " 💸"] }
+loyal: { suffix: ["", " 🫡"] }
+jealous: { suffix: ["", " 🙂"] }

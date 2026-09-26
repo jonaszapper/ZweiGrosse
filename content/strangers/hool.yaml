@@ -1,0 +1,6 @@
+id: hool
+kind: hooligan
+trait: hothead
+minProgress: 0.2
+accessory: scarf
+look: { skin: "#F2C29B", hair: "#3A2A20", hairStyle: spiky, outfit: "#E9E9EE" }

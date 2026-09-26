@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sprite lab: Zwei Grosse</title>
+  <style>
+    body { margin: 0; padding: 16px; background: #2A1B3F; color: #FFF4D8; font: 14px/1.4 system-ui, sans-serif; }
+    h1 { font-size: 20px; margin: 0 0 4px; } h2 { font-size: 15px; margin: 22px 0 8px; color: #FFC94A; }
+    p { margin: 0 0 10px; color: #cbb; max-width: 70ch; }
+    .bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 10px 0; }
+    .grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    figure { margin: 0; text-align: center; font-size: 11px; color: #cbb; }
+    canvas { image-rendering: pixelated; display: block; background: #3A2766; border-radius: 4px; }
+    button, select, input { font: inherit; }
+  </style>
+</head>
+<body>
+  <h1>Sprite lab</h1>
+  <p>Every part from <code>art/</code>, composed live. Edit a YAML file and this page reloads. Draw flat colours: the outline and shading are added by code.</p>
+  <div class="bar">
+    <label>Zoom <input id="zoom" type="range" min="2" max="10" value="5" /></label>
+    <label>Stage <select id="stage"><option>sober</option><option>tipsy</option><option>wasted</option></select></label>
+    <label><input id="outline" type="checkbox" checked /> Outline</label>
+    <label><input id="shade" type="checkbox" checked /> Shading</label>
+    <button id="reroll">New random crowd</button>
+  </div>
+  <div id="out"></div>
+  <script type="module" src="./lab.ts"></script>
+</body>
+</html>

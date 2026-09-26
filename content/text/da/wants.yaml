@@ -1,0 +1,51 @@
+# What a friend wants. Shown in the log and when you tap them.
+# {s} is the stranger involved.
+want:
+  label:
+    beer: "vil have en gratis øl"
+    wingman: "skal bruge en wingman"
+    hug: "har brug for et kram"
+    backup: "skal bruge backup"
+    dance: "vil straffe floor"
+    dare: "er blevet udfordret"
+    lost: "er forsvundet"
+    bush: "vil hente flasken i busken"
+    sick: "skal kaste op"
+    creep: "bliver lagt an på af Klamme Kaj"
+    stand: "vil sige fra over for bonderøvene"
+    afterparty: "er inviteret til efterfest"
+  beer:
+    default: ["vil have en gratis øl", "har ingen skeez og vil have en øl", "skal bruge en fadøl. Nu"]
+    spender: ["vil give bordet en omgang", "vil vise sig med en omgang"]
+  wingman:
+    default: ["vil snakke med {s}", "synes {s} er lækker og skal bruge en wingman", "vil garne {s}"]
+    carpenter: "vil snakke med Tømrer-Tommy. Han har jo penge"
+  hug: ["har lige set sin ex", "har fået en trist sms", "siger sangen minder dem om noget", "føler sig som en npc i aften"]
+  backup:
+    default: ["skændes med {s} om fodbold", "siger {s} har spildt på dem", "skændes med {s} om musikken", "siger {s} kaldte dem en letvægter"]
+    hooligan: ["bliver råbt ad af hooliganen, fordi de 'holder med de forkerte'", "har spildt øl på hooliganens trøje"]
+    gang: "er kommet til at skubbe til bandefyren. Han kigger"
+    racists: "bliver svinet til af bonderøvene"
+  dance:
+    default: ["vil straffe floor", "vil danse med nogen"]
+    wallflower: "vil gerne danse, men ikke alene"
+  dare:
+    default: ["bliver udfordret af {s} til at bunde en grøn shot", "bliver udfordret til at danse på bordet", "bliver udfordret til at skrive til sin ex"]
+    pill: "får tilbudt en pille af {s}"
+    gang: "får tilbudt 'en lille en' af bandefyren på toilettet"
+  lost: ["driver mod udgangen", "ser helt lost ud", "gik ud 'for at få luft' for tyve minutter siden"]
+  bush: "vil hente flasken i busken"
+  sick: ["er grøn i hovedet", "skal kaste op. Nu", "har løbet mod toilettet"]
+  creep: ["bliver lagt an på af Klamme Kaj. Han står alt for tæt på", "får 'en drink' af Klamme Kaj og kan ikke komme væk", "har Klamme Kajs hånd på ryggen"]
+  stand:
+    victim: "bliver råbt racistisk lort efter af bonderøvene"
+    bystander: "har set bonderøvene hænge en fyr ud ved baren. Det er racistisk lort"
+  afterparty: "bliver inviteret til efterfest hos Tømrer-Tommy. 'Der er sprut og jacuzzi'"
+  forced:
+    koSick: "kan ikke stå op. Nogen skal tage sig af dem"
+    koLost: "er helt i hegnet. Nogen skal tage sig af dem"
+    sulking: "surmuler efter at være blevet trukket væk"
+    watchedLeave: "så {h} gå med {s}"
+    watchingFlirt: "kigger på {t} flirte"
+    lostAgain: "vandrede væk igen"
+    followed: "bliver fulgt efter af Klamme Kaj"

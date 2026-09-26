@@ -1,0 +1,16 @@
+# Pairs of traits that click (+1 when one helps the other) or clash (-1).
+# Clicking doesn't mean good for the night: drama and jealous get along beautifully.
+clicks:
+  - [charmer, wallflower]
+  - [hothead, loyal]
+  - [lightweight, mum]
+  - [loyal, softie]
+  - [party, spender]
+  - [drama, knows]
+  - [drama, jealous]
+clashes:
+  - [mum, party]
+  - [hothead, softie]
+  - [knows, loyal]
+  - [drama, wallflower]
+  - [charmer, jealous]

@@ -1,0 +1,7 @@
+# Mechanics for this trait. Name and description are in content/text/da/traits.yaml.
+id: mum
+skills: { charm: 0, care: 2, heat: 0, wild: -1 }
+rate: 0.5
+tolerance: 0.6
+same: dilute
+bias: { hug: 1, beer: 1, dance: 1 }

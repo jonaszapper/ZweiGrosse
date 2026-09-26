@@ -1,0 +1,50 @@
+# Trait names and descriptions. The mechanics live in content/traits/<id>.yaml.
+trait:
+  charmer:
+    name: "Charmetrold"
+    short: "Charme"   # nametag in the bar
+    desc: "Skarp wingman. Ender nogle gange selv med den fremmede."
+  knows:
+    name: "Kender alle"
+    short: "Kender alle"   # nametag in the bar
+    desc: "Charmerer Simon, Anders og fremmede. Kender selv bandefyrens fætter. Driver rundt til andre borde."
+  spender:
+    name: "Spenderbukser"
+    short: "Spender"   # nametag in the bar
+    desc: "Løser ølproblemer med penge. To af dem starter en omgangskrig."
+  mum:
+    name: "Gruppens mor"
+    short: "Mor"   # nametag in the bar
+    desc: "Bedst til at finde de forsvundne og følger de fulde hjem. Siger fra over for Klamme Kaj. To mødre: den ene har fri."
+  softie:
+    name: "Blødsøden"
+    short: "Blød"   # nametag in the bar
+    desc: "Giver de bedste kram. Bliver de overset, spreder tristheden sig. To blødsødne græder sammen på toilettet."
+  loyal:
+    name: "Loyal"
+    short: "Loyal"   # nametag in the bar
+    desc: "Hjælper sine venner uden at blive spurgt. To loyale bevæger sig som én."
+  hothead:
+    name: "Hidsigprop"
+    short: "Hidsig"   # nametag in the bar
+    desc: "Vinder alle diskussioner. Slåskampe tiltrækker Anders, politiet eller værre. To hidsigpropper: én slåskamp bliver til to."
+  drama:
+    name: "Sladrehank"
+    short: "Sladder"   # nametag in the bar
+    desc: "Godt selskab. Alle hemmeligheder ender i gruppechatten."
+  jealous:
+    name: "Jaloux"
+    short: "Jaloux"   # nametag in the bar
+    desc: "Har et crush i crewet. Hader at se dem flirte. Saboterer, hvis de skal være deres wingman."
+  lightweight:
+    name: "Letvægter"
+    short: "Letvægt"   # nametag in the bar
+    desc: "Bliver hurtigt fuld og snakker hele tiden. To letvægtere drikker i takt og går hjem sammen."
+  party:
+    name: "Festabe"
+    short: "Festabe"   # nametag in the bar
+    desc: "Siger ja til alle udfordringer. Alle danser bedre, når en festabe er på gulvet. Kan synge slagsange med hooliganen."
+  wallflower:
+    name: "Vægpryd"
+    short: "Vægpryd"   # nametag in the bar
+    desc: "Danser ikke alene. Opdager hvem der mangler. Når de endelig danser, er det aftenens historie."

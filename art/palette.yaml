@@ -1,0 +1,17 @@
+# Colours for the pixel art.
+outline: "#2B1A12"   # added around every sprite by code
+shade: 0.78          # how dark the automatic shading is (1 = no shading)
+# Letters with a fixed colour. s, h and o come from each character's look.
+fixed:
+  e: "#2B1A12"   # eyes
+  m: "#7A2A2A"   # mouth
+  b: "#FF6F91"   # blush
+  p: "#2E2E3A"   # trousers
+  f: "#1C1C22"   # shoes
+  w: "#F2F2F2"   # white
+  k: "#141418"   # black
+  y: "#F2C94C"   # gold
+  g: "#7CC47F"   # banknotes
+skins: ["#FFD9B8", "#F2C29B", "#D9A07A", "#A8704B", "#7A4E33"]
+hairs: ["#2B1D14", "#6B3A1E", "#E0B04A", "#C2452D", "#3D5AA8", "#E77FB0", "#1F1F1F", "#F2E6C9"]
+outfits: ["#3E9BE0", "#FF6F91", "#FFB938", "#5BC08A", "#8E6BE8", "#F2F2F2", "#2E2E3A"]

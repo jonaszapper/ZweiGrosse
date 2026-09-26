@@ -1,0 +1,79 @@
+# Hand-written moments for specific pairs. {h} = helper, {t} = the one being helped, {T} = their name in capitals, {s} = stranger.
+# "text" goes in the log, "float" pops up over their head, "chat" lines show up in the morning group chat.
+combo:
+  knowsGang:
+    text: "kender hans fætter. Bandefyren klapper {t} på kinden og går. Uhyggeligt, men fint."
+    float: "Kender ham"
+    chat: "{h} kender bandefyrens fætter?? hvem kender {h} ikke"
+  chants:
+    text: "i stedet for at slås begynder de at synge slagsange med ham. Nu er de venner."
+    float: "Slagsange!"
+    chat1: "VI ENDTE MED AT SYNGE SLAGSANGE MED HOOLIGANEN"
+    chat2: "jeg ved ikke engang hvilket hold det var"
+    photo: "{h}, {t} og en hooligan, arm i arm"
+  mumCreep:
+    text: "går direkte hen til ham. 'Du kunne være hendes farfar. Gå hjem.' Han går."
+    float: "Gå hjem, Kaj"
+    chat1: "{h} sagde 'du kunne være hendes farfar. gå hjem' og han GIK"
+    chat2: "nogen skulle jo sige det"
+  beerOnKaj:
+    text: "hælder en øl i hovedet på Kaj. Anders smider Kaj ud, ikke {h}."
+    float: "Øl i hovedet"
+    chat: "kaj fik en øl i hovedet og anders smed HAM ud. retfærdighed"
+  beerOnKajOut:
+    text: "hælder en øl i hovedet på Kaj. Anders så kun den del. {h} bliver smidt ud."
+    float: "Smidt ud"
+    chat: "smidt ud for at forsvare min vens ære. kaj må stadig være der?? make it make sense"
+  picked:
+    text: "den fremmede valgte vægprydden frem for charmetrolden."
+    float: "Valgt!"
+    chat: "jeg gik over for at wingman'e {t} og de valgte {t} over MIG. jeg er så stolt"
+    photo: "{t} og en fremmed, der griner"
+  byTheEar:
+    text: "trukket væk i øret, før det blev fysisk. Surmuler nu."
+    float: "Afværget"
+    chat: "{h} trak mig ud i øret. jeg VANDT"
+  tooMuch:
+    text: "vinder diskussionen. Meget højt. {t} vil synke i jorden."
+    float: "For meget"
+    chat: "{h} du behøvede ikke stå op på stolen"
+  downTogether:
+    text: "slåskamp. Anders smider dem begge ud. De gik ned sammen."
+    float: "Smidt ud"
+    chat1: "vi gik ned sammen 🫡"
+    chat2: "brødre i våben"
+    photo: "{h} og {t} på kantstenen udenfor"
+  magic:
+    text: "trukket ud på gulvet. Der skete noget magisk."
+    float: "Magi!"
+    chat: "{T} STRAFFEDE FLOOR. jeg har video"
+    photo: "{t} midt i en piruet på dansegulvet"
+  fled:
+    text: "for meget, for hurtigt. {t} flygter ud på toilettet."
+    float: "Flygtede"
+    chat: "sorry jeg gemte mig på toilettet i 20 min"
+  wholeBar:
+    text: "giver en omgang til hele baren i stedet."
+    float: "Omgang!"
+    chat1: "hvem betalte for hele baren??"
+    chat2: "tjek ikke min bankapp"
+  dramaHug:
+    text: "godt kram. Grunden til tårerne ligger i gruppechatten i morgen tidlig."
+    float: "Krammet"
+    chat1: "ok så her er grunden til at {t} græd"
+    chat2: "{h} NEJ"
+  sabotage:
+    text: "ødelægger det 'ved et uheld'. Jaloux."
+    float: "Sabotage"
+    chat: "{h} hvorfor sagde du at jeg har kæreste"
+  talker:
+    text: "letvægteren snakkede hele tiden. Det virkede. To shots senere."
+    float: "Sådan!"
+    chat: "{h} snakkede HELE tiden og det virkede??"
+  carried:
+    text: "samlet op og fulgt sikkert hjem. Mor er færdig for i aften."
+    float: "Samlet op"
+    chat: "{h} bar mig hjem. legende"
+  found:
+    text: "fundet på få sekunder. Mor ved altid hvor man er."
+    float: "Samlet op"

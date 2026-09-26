@@ -1,0 +1,7 @@
+# Mechanics for this trait. Name and description are in content/text/da/traits.yaml.
+id: jealous
+skills: { charm: 0, care: 1, heat: 1, wild: 0 }
+rate: 0.8
+tolerance: 1
+same: compete
+bias: { hug: 2, backup: 2 }

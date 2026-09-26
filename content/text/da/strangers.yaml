@@ -1,0 +1,31 @@
+# Names, nametags, arrival lines and what happens if you tap them.
+stranger:
+  lasse: { name: "Lasse", tag: "gik ud sidste år" }
+  bday: { name: "Fødselaren", tag: "fylder 19" }
+  exch: { name: "Udvekslingsstudenten", tag: "fra Spanien" }
+  nina: { name: "Nina", tag: "fra Netto" }
+  bro: { name: "Storebror", tag: "til en eller anden" }
+  red: { name: "Rødjakken", tag: "fremmed" }
+  ex: { name: "Kusinens ex", tag: "akavet" }
+  creep: { name: "Klamme Kaj", tag: "gammel gris" }
+  hool: { name: "Hooliganen", tag: "fuld, synger" }
+  farm: { name: "Bonderøvene", tag: "flok på fire" }
+  carp: { name: "Tømrer-Tommy", tag: "kontanter" }
+  gang: { name: "Bandefyren", tag: "rør ham ikke" }
+  greet:
+    default: "{h} siger hej til {s}. Fremmede gør deres egne ting."
+    creep: "{h} holder sig langt væk fra Klamme Kaj."
+    gang: "{h} nikker til bandefyren. Han nikker ikke tilbage."
+    racists: "{h} sender bonderøvene et langt blik."
+    carpenter: "{h} skåler med Tømrer-Tommy."
+    hooligan: "{h} bliver krammet af hooliganen. Uden grund."
+
+arrive:
+  default: "{s} dukker op."
+  creep:
+    - "Klamme Kaj sidder ved baren. Igen. Han er mindst 60."
+    - "Klamme Kaj er her. Selvfølgelig er han her."
+  hooligan: "En fuld hooligan vælter ind og synger slagsange."
+  racists: "En flok bonderøve i kasketter kommer ind. De er allerede højrøvede."
+  carpenter: "Tømrer-Tommy smider en tyk rulle sedler på baren. 'Omgang til alle!'"
+  gang: "Bandefyren kommer ind. Folk rykker lige et skridt til side."

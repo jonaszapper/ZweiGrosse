@@ -1,0 +1,7 @@
+id: creep
+kind: creep
+trait: charmer
+minProgress: 0.12
+accessory: combover
+zone: bar
+look: { skin: "#F4CDB0", hair: "#B9B4AE", hairStyle: none, outfit: "#7A6A58" }
