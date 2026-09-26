@@ -41,7 +41,7 @@ ui:
     playing: "REMIXET!"
   hint:
     pick: "Tryk på en ven for at vælge dem."
-    selected: "{name} ({trait}, {stage}){want}. Tryk på en ven, der har brug for noget, eller et sted: baren, døren, busken, dansegulvet eller bordet."
+    selected: "{name} ({trait}, {stage}){want}. Tryk på en ven, der har brug for noget, eller på et sted."
     openWants: "{list}. Tryk på en ven for at sende dem."
     quiet: "Stille lige nu. Tryk på en ven for at flytte dem, eller få folk ud på dansegulvet."
     stranger: "Fremmede gør deres egne ting. Vælg en af dine venner."
@@ -61,6 +61,8 @@ ui:
   endNight: "Slut natten"
   seed: "seed {seed}"
   copyReplay: "Kopiér replay-link"
+  logOpen: "Vis hele loggen"
+  logClose: "Skjul loggen"
   replayCopied: "Link kopieret. Send det med, når du melder en fejl."
   replayPrompt: "Kopiér linket. Det spiller natten præcis som den gik:"
   morning:

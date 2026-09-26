@@ -16,7 +16,8 @@ Read `docs/DESIGN.md` before proposing features or changing how the game feels: 
 
 ## Layout
 - `src/sim/` The game rules. Pure TypeScript. See `src/sim/CLAUDE.md`.
-- `src/scenes/BarScene.ts` The Phaser scene: draws the bar, moves sprites, turns taps into controller calls.
+- `src/scenes/BarScene.ts` The Phaser scene: lays out the areas, draws the scenery, moves sprites, turns taps into controller calls.
+- `src/game/palette.ts` The bar's colours.
 - `src/game/controller.ts` Selection, hints, speed. Shared by the scene and the HUD.
 - `src/ui/` Preact screens: crew builder, night HUD, morning-after chat.
 - `src/sprites/compose.ts` Builds pixel sprites from the text-grid parts in `art/`.
@@ -30,7 +31,7 @@ Read `docs/DESIGN.md` before proposing features or changing how the game feels: 
 2. **No player-facing text in code.** Every string shown to players is a key in `content/text/da/*.yaml`, looked up with `t('key', vars)`. New keys go in the YAML in the same PR. Tests run the sim in strict mode, so a missing key fails CI.
 3. **All randomness in the sim goes through the seeded RNG** (`this.rng`, `this.pick`, `this.chance`). Never `Math.random()` in `src/sim`. The seed, the crew, the carry-over from last night and the player's taps decide a night exactly. The game steps the sim in fixed ticks (`src/sim/replay.ts`), so speed and frame rate never change what happens. Player actions reach the sim only through `sendTo`, `sendPlace` and `endNow`, which record themselves; don't add another way in without recording it. Tapping the seed in the night footer copies a `?replay=` link that plays the night again exactly.
 4. **Numbers live in `content/tuning.yaml`**, not in code, when a designer might want to tweak them.
-5. **Mobile first.** The scene is laid out in a 360×640 logical space. Test on a phone-sized viewport. Tap targets at least 40 logical pixels.
+5. **Mobile first.** The scene is 360 logical pixels wide and 480 to 640 tall, whatever fills the phone (`viewHeight` in `BarScene.ts`); lay things out relative to the areas, never at fixed y positions. The night must fit the screen without scrolling: test at 360×640 and 390×844. Tap targets at least 40 logical pixels. Colours come from `src/game/palette.ts`.
 6. Keep PRs small and focused on one thing. Say in the PR what you changed and how you checked it.
 
 ## Debugging

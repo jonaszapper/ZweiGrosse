@@ -53,21 +53,34 @@ img { image-rendering: pixelated; }
 .glossary dt { font-weight: 800; }
 .glossary dd { margin: 0; color: var(--ink-soft); font-size: 14px; }
 
-/* night */
-.night { max-width: 520px; margin: 0 auto; padding: 8px 10px 16px; display: grid; gap: 8px; }
-.hud { display: flex; align-items: center; gap: 8px; }
-.clock { font-family: var(--display); font-size: 28px; line-height: 1; color: var(--lamp); -webkit-text-stroke: 2px #2A1405; paint-order: stroke fill; }
-.phase { font-weight: 800; font-size: 13px; color: var(--ink-soft); margin-right: auto; }
+/* night: a dark room with warm panels. Scene colours are in src/game/palette.ts. */
+.night {
+  --night: #1A1128; --night-ink: #F6ECD8; --night-soft: #C9B89E;
+  height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto auto; gap: 6px;
+  padding: 6px max(8px, calc((100% - 520px) / 2));
+  background: var(--night); color: var(--night-ink);
+}
+html:has(.night), html:has(.night) body { background: #1A1128; }
+.hud { display: flex; align-items: center; gap: 8px; min-height: 40px; }
+.clock { font-family: var(--display); font-size: 28px; line-height: 1; color: var(--lamp); -webkit-text-stroke: 2px #2A1405; paint-order: stroke fill; font-variant-numeric: tabular-nums; }
+.phase { font-weight: 800; font-size: 12px; line-height: 1.15; color: var(--night-soft); margin-right: auto; }
 .speed { display: flex; gap: 4px; }
-.stage { width: min(100%, calc(68dvh * 9 / 16)); margin: 0 auto; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden; border: 2px solid #1A0F12; box-shadow: 0 3px 0 #1A0F12; background: #2A1B3F; touch-action: manipulation; }
+.night .btn.small { min-height: 38px; min-width: 40px; }
+.stage { min-height: 0; width: 100%; height: 100%; border-radius: 12px; overflow: hidden; border: 2px solid #0E0814; background: var(--night); touch-action: manipulation; }
 .stage canvas { display: block; }
-.hint { font-size: 14px; min-height: 44px; padding: 8px 10px; }
-.log { margin: 0; padding: 8px 12px; list-style: none; display: grid; gap: 3px; font-size: 13px; }
+.talk { position: relative; padding: 7px 10px; display: grid; gap: 4px; color: var(--ink); }
+.talk .hint { margin: 0; font-size: 13.5px; line-height: 18px; height: 36px; font-weight: 700; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.log { margin: 0; padding: 4px 0 0; list-style: none; display: grid; gap: 0; font-size: 12.5px; line-height: 18px; height: 40px; border-top: 2px dashed rgba(59,38,22,.25); cursor: pointer; }
+.log li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .log li:first-child { font-weight: 700; }
 .log time { font-weight: 800; color: var(--ink-soft); margin-right: 5px; font-variant-numeric: tabular-nums; }
 .log .m { display: block; color: var(--ink-soft); font-size: 12px; }
-.foot { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.log.full { position: absolute; left: -2px; right: -2px; bottom: calc(100% + 6px); height: auto; max-height: 55dvh; overflow: hidden; gap: 3px; padding: 10px 12px; background: var(--panel); border: 2px solid var(--edge); border-radius: 10px; box-shadow: 0 3px 0 var(--edge); z-index: 5; -webkit-mask-image: linear-gradient(#000 85%, transparent); mask-image: linear-gradient(#000 85%, transparent); }
+.log.full li { white-space: normal; }
+.foot { display: flex; gap: 8px; align-items: center; justify-content: space-between; min-height: 40px; }
 .seed { font: inherit; font-size: 11px; color: var(--ink-soft); background: none; border: 0; padding: 0 6px; min-height: 40px; text-decoration: underline dotted; cursor: pointer; }
+.night .seed { color: var(--night-soft); }
 
 /* morning after */
 .phone { background: var(--panel); border: 2px solid #3B2616; border-radius: 22px; overflow: hidden; box-shadow: 0 3px 0 #3B2616; }

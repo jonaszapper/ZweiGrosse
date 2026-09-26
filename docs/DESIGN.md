@@ -49,6 +49,15 @@ Two or three per night, picked at the start: Klamme Kaj (an old creep), the hool
 - Sprites are generated from text-grid parts so we can make and change them with code and Claude. The sprite lab is where art gets reviewed.
 - Warm, cosy UI panels around a dark bar.
 
+### The bar screen (style frame)
+- **One screen, no scrolling.** Clock and speed on top, the bar in the middle, one panel below with the hint and the two latest log lines, and a slim footer. Tapping the log opens the rest of the night over the bar. Checked at 360×640, 375×667 and 390×844.
+- **The bar stretches, it doesn't shrink.** It is always 360 logical pixels wide. Its height is anything from 480 to 640, whatever fills the phone. The top row (bar, door) and the bottom row (smoking area, gone home) keep their size; the dancefloor and the table get the rest, and a second row of people when there is room for one.
+- **Crowds squeeze before they spill.** People in an area are centred and move closer together when it fills up. Names and tags are shortened with "…" to the space each person has, and the tag is dropped when it gets too tight. People further down stand in front.
+- **Scenery is flat pixel shapes, like the sprites:** bottles and a counter with taps at the bar, a lit doorway and a rope at the door, the bush with a bottle sticking out (it disappears when the bush is empty), a disco ball on the floor, a lamp over a long table, a brick wall outside, and a night sky over the people who went home. Everyone has a small shadow.
+- **Palette** (`src/game/palette.ts`, mirrored in `src/ui/style.css`): the room is dark and cool (deep purple `#1A1128` / `#2A1B3F`, slate blue at the door and outside). Light is warm (lamp yellow `#FFD98A`, brass `#FFC94A`, orange door light `#FFB35C`). Wood is brown in three steps. People, want bubbles and the cream UI panels sit on top in the brightest colours. Friends have white names, strangers light blue, troublemakers pink, Simon and Anders yellow.
+- **Want bubbles** are white speech bubbles with the want's icon. They turn pink, grow and shake when the want gets urgent.
+- **The remix** gets coloured spotlights sweeping the dancefloor (no hard flashing), and the banner sits at the bottom of the floor so it never covers anyone. A word that pops up for several people at once, like "Øjeblikket", shows once over the whole group.
+
 ## Balance targets
 Measured with `npm run sim` using an attentive autopilot, crew of five. "Sent home badly" means leaving for any reason except going home with someone or the jacuzzi afterparty (`FINE_EXITS` in `src/sim/engine.ts`). Two lightweights leaving together and the garage afterparty count as bad. Open question: should they?
 - 1.3 to 2 friends sent home badly per night.
@@ -75,7 +84,7 @@ Highest value for effort first. Benefit and cost scored 1 to 5.
 1. **Play it together** (benefit 5, cost 1). Note which pairings fall flat and which moments land.
 2. ~~Pick the engine and set up a shared repo~~ (done: this repo).
 3. **More variants of the pair moments** (4, 1). Fixes repetition. Writing, not code.
-4. **Style frame of the bar screen** (5, 2). One polished screen that fixes layout, character style and palette.
+4. ~~Style frame of the bar screen~~ (done: see "The bar screen" under Look. Next step is to play it on real phones and tune it by eye).
 5. **Visible reactions** (4, 2). The helper walks over, both react, sounds play. Outcomes should be seen, not only read.
 6. **Original remix track and sound set** (4, 2). See `audio/README.md`.
 7. **Better morning-after recap** (4, 2). Better photos, reactions to messages, a slower reveal.
@@ -93,8 +102,10 @@ Highest value for effort first. Benefit and cost scored 1 to 5.
 A night is decided by its seed, the crew, what carried over from the night before, and the player's taps. The game records the taps and steps the sim in fixed ticks, so the replay link (tap the seed in the footer, or on the morning screen) plays a night again exactly, at any speed. The seed alone only fixes how a night starts.
 
 ## Known loose ends
-- Want bubbles use emoji. Fine on phones, blank in some headless browsers used for testing.
+- Want bubbles use emoji. The night now waits up to 1.5 seconds for the fonts, which fixed blank bubbles in headless test browsers. Pixel icons would match the style better.
 - Face expressions are a first pass; happy and sad eyes need work in the sprite lab.
-- Long stranger names are cut off on nametags.
+- Long names are shortened with "…" when space is tight (see "The bar screen"). Short names in `content/text/da` read better than cut ones.
+- The crew builder, the morning chat and the sprite lab haven't had the style-frame pass yet. Trait names are cut off in the crew builder's dropdowns on narrow phones.
+- The full log over the bar shows what fits and doesn't scroll, because a scrolling box over the canvas made it go blank in Chromium.
 - No licence chosen.
 - No audio yet.
